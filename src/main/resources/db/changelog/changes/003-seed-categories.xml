@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="003-seed-categories" author="budgetcontrol">
+        <insert tableName="category">
+            <column name="name" value="Salary"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Refund"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Other Income"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Food"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Rent"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Utilities"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Transportation"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Health"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Entertainment"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Shopping"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Transfer"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Other Expense"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
