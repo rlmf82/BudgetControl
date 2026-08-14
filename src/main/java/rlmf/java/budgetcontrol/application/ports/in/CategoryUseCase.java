@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface CategoryUseCase {
 
-    Category get(Long id);
-
     List<Category> list();
 }
