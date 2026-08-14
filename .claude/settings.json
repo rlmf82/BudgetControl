@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git commit *)",
+            "command": "python3 -c 'import json,sys; d=json.load(sys.stdin); c=d.get(\"tool_input\",{}).get(\"command\",\"\"); req=[\"Why:\",\"What changed:\",\"Files changed:\",\"Tests:\"]; missing=[r for r in req if r not in c]; missing and print(json.dumps({\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Commit message is missing required sections: \"+\", \".join(missing)+\". Use the commit-message skill to draft a structured message (Why / What changed / Files changed / Tests) before committing.\"}}))'",
+            "timeout": 10,
+            "statusMessage": "Checking commit message structure..."
+          }
+        ]
+      }
+    ]
+  }
+}
