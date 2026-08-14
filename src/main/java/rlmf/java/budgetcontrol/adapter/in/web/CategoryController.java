@@ -1,6 +1,7 @@
 package rlmf.java.budgetcontrol.adapter.in.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rlmf.java.budgetcontrol.adapter.in.web.dto.CategoryResponse;
@@ -16,6 +17,11 @@ public class CategoryController {
 
     public CategoryController(CategoryUseCase categoryService) {
         this.categoryService = categoryService;
+    }
+
+    @GetMapping("/{id}")
+    public CategoryResponse get(@PathVariable Long id) {
+        return CategoryResponse.from(categoryService.get(id));
     }
 
     @GetMapping

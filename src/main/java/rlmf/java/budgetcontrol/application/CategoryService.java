@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rlmf.java.budgetcontrol.application.ports.in.CategoryUseCase;
 import rlmf.java.budgetcontrol.application.ports.out.CategoryRepository;
+import rlmf.java.budgetcontrol.domain.ResourceNotFoundException;
 import rlmf.java.budgetcontrol.domain.model.Category;
 
 import java.util.List;
@@ -16,6 +17,12 @@ public class CategoryService implements CategoryUseCase {
 
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
+    }
+
+    @Override
+    public Category get(Long id) {
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found: " + id));
     }
 
     @Override
