@@ -25,7 +25,7 @@ export DB_USERNAME=root
 export DB_PASSWORD=your_password
 ```
 
-If your MySQL isn't on `localhost:3306`, edit `spring.datasource.url` in `application.properties` directly.
+If your MySQL isn't on `localhost:13306`, edit `spring.datasource.url` in `application.properties` directly.
 
 ## 3. Run the app
 
