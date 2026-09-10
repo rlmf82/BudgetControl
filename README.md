@@ -5,12 +5,12 @@ Spring Boot service for recording personal financial transactions, including pay
 ## Requirements
 
 - Java 21
-- MySQL reachable at `localhost:3306` (the app has no embedded/dev database — see below)
+- PostgreSQL reachable at `localhost:5432` (the app has no embedded/dev database — see below)
 - No local Maven install needed; use the bundled wrapper (`./mvnw`)
 
 ## 1. Create the database
 
-Create an empty schema named `budgetcontrol`. The app doesn't create it for you — Liquibase only creates the tables *inside* it on startup:
+Create an empty database named `budgetcontrol`. The app doesn't create it for you — Liquibase only creates the tables *inside* it on startup:
 
 ```sql
 CREATE DATABASE budgetcontrol;
@@ -18,14 +18,14 @@ CREATE DATABASE budgetcontrol;
 
 ## 2. Configure credentials
 
-The datasource is `jdbc:mysql://localhost:3306/budgetcontrol`, configured in `src/main/resources/application.properties`. Username/password come from environment variables, defaulting to `root` / empty password:
+The datasource is `jdbc:postgresql://localhost:5432/budgetcontrol`, configured in `src/main/resources/application.properties`. Username/password come from environment variables, defaulting to `postgres` / `root`:
 
 ```bash
-export DB_USERNAME=root
+export DB_USERNAME=postgres
 export DB_PASSWORD=your_password
 ```
 
-If your MySQL isn't on `localhost:13306`, edit `spring.datasource.url` in `application.properties` directly.
+If your PostgreSQL isn't on `localhost:5432`, set `DB_HOST`/`DB_PORT` env vars, or edit `spring.datasource.url` in `application.properties` directly.
 
 ## 3. Run the app
 
@@ -74,7 +74,7 @@ curl "http://localhost:8080/api/reports/monthly?year=2026&month=8"
 ## Other commands
 
 - Build: `./mvnw clean install`
-- Run all tests (uses an in-memory H2 database, no MySQL needed): `./mvnw test`
+- Run all tests (uses an in-memory H2 database, no PostgreSQL needed): `./mvnw test`
 - Run a single test class: `./mvnw test -Dtest=OperationControllerTest`
 - Package: `./mvnw clean package`
 
