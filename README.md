@@ -1,6 +1,6 @@
 # BudgetControl
 
-Spring Boot service to record personal financial operations (payments and incomes) and generate monthly/yearly reports.
+Spring Boot service for recording personal financial transactions, including payments and income, and generating monthly and yearly reports. This project was created to learn and experiment with spec-driven development, with Claude Code being used to drive the implementation.
 
 ## Requirements
 
