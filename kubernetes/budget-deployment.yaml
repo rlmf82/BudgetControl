@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: budget-deployment
+  labels:
+    app: budget-ws
+    tier: backend
+spec:
+  template:
+    metadata:
+      labels:
+        app: budget-ws
+    spec:
+      containers:
+        - name: budget-ws-container
+          image: rafaelfarias/budget-ws-demo:1.0.1
+          ports:
+            - containerPort: 9000
+          env:
+            - name: SPRINT_PROFILES_ACTIVE
+              value: test
+  selector:
+    matchLabels:
+      app: budget-ws # this label must be in the template->metadata->label section.

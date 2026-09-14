@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: budget-pod
+  labels:
+    app: budget-ws
+    tier: backend
+spec:
+  containers:
+    - name: budget-ws
+      image: rafaelfarias/budget-ws-demo:1.0.1
+      imagePullPolicy: IfNotPresent # Always - Use this policy in build phase
+      ports:
+        - containerPort: 9000
