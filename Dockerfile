@@ -18,3 +18,5 @@ COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 9000
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# docker build -f Dockerfile -t rafaelfarias/budget-ws-demo:1.0.X .

@@ -5,6 +5,8 @@ metadata:
   labels:
     app: budget-ws
     tier: backend
+  annotations:
+    kubernetes.io/change-cause: "Updated docker image..."
 spec:
   replicas: 2
   template:
@@ -23,3 +25,7 @@ spec:
   selector:
     matchLabels:
       app: budget-ws # this label must be in the template->metadata->label section.
+
+# To create or update, run with kubectl apply -f budget-deployment.yaml
+# To check revisions, run kubectl rollout history deployment budget-deployment --revision=<revision number>
+# to rollback , run kubectl rollout undo deployment budget-deployment --to-revision=<revision number>
