@@ -14,18 +14,30 @@ spec:
       labels:
         app: budget-ws
     spec:
+      volumes:
+        - name: db-secrets-volume
+          secret:
+            secretName: budget-secret # this name is defined in the budget-secret-yaml file.
       containers:
         - name: budget-ws-container
           image: rafaelfarias/budget-ws-demo:1.0.1
           ports:
             - containerPort: 9000
-          env:
-            - name: SPRINT_PROFILES_ACTIVE
-              value: test
+          # env:
+          #  - name: SPRINT_PROFILES_ACTIVE
+          #    value: test
+          envFrom:
+            - configMapRef:
+                name: budget-config # set the configMap for this deployment.
+            # - secretRef:
+            #    name: budget-secret # set the secret for this deployment.
+          volumeMounts:
+            - mountPath: /opt/secrets/db # Path to a directory in the container
+              name: db-secrets-volume
   selector:
     matchLabels:
       app: budget-ws # this label must be in the template->metadata->label section.
 
 # To create or update, run with kubectl apply -f budget-deployment.yaml
 # To check revisions, run kubectl rollout history deployment budget-deployment --revision=<revision number>
-# to rollback , run kubectl rollout undo deployment budget-deployment --to-revision=<revision number>
+# To rollback , run kubectl rollout undo deployment budget-deployment --to-revision=<revision number>

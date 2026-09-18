@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: budget-config
+data:
+  spring.application.name: "BudgetControl"
+  server.port: "9000"
+  spring.profiles.active: "test"
+
+# To use this ConfigMap, run kubectl apply -f budget-config.yaml
+# To see the ConfigMap, run kubectl describe configmap budget-config
+# To update the ConfigMap in the clusters, run kubectl apply -f budget-config.yaml,
+  # then kubectl rollout restart deployment budget-deployment
+
+# To delete a ConfigMap, run kubectl delete configmap <ConfigMap-name> ...
+
+# Check environment variables in containers, kubectl exec -it <pod-name> -c budget-ws-container -- env
